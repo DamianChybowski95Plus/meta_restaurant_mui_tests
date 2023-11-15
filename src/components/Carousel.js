@@ -106,7 +106,6 @@ export default function Carousel({ children, cardsPerPanel = 1, padding = "1", s
                             {child}
                         </Box>
                     )}
-                    
                     {/* Dodać przyciski, opcje animacji, oraz mobile */}
                 </Stack>
             </Box>
