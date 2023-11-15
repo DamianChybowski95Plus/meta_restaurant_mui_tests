@@ -1,11 +1,74 @@
-import { Typography } from "@mui/material";
-import { Outlet } from "react-router-dom";
+import { Button, Drawer, Sheet, Stack, Divider, Typography } from "@mui/joy"
+import { useOutlet } from "react-router-dom";
 
-export default function MainLayout(){
-    return(
-        <>
-            <Typography level="title-md">Main Layout</Typography>
-            <Outlet/>
+import ThemeSwitch from "components/ThemeSwitch"
+import { useEffect, useState } from "react";
+import HeaderSection from "components/sections/HeaderSection";
+import FooterSection from "components/sections/FooterSection";
+import Home from "./MainLayout/Home";
+
+const Wrapper = {
+    variant : "soft",
+    sx : {
+        width : { "md" : "90%", "lg" : "80% "},
+        margin : "0 auto",
+        boxShadow : "xl",
+        borderRadius: 2
+    }
+}
+
+const Main = {
+    component : "main",
+    variant : "soft",
+    spacing : 1,
+
+    sx : {
+
+    }
+}
+
+export default function App(){
+    const AdminSession = false
+    
+    const [ adminDrawer, setAdminDrawer ] = useState(false)
+    const [ selectedMainNav, setSelectedMainNav ] = useState("home")
+    const [ screenWidth, setScreenWidth ] = useState(window.innerWidth)
+
+    useEffect(()=>{
+        window.addEventListener( "resize", ()=>setScreenWidth(window.innerWidth))
+
+        return () => { 
+            window.addEventListener( "resize", ()=>setScreenWidth(window.innerWidth))
+        }
+    },[screenWidth, setScreenWidth])
+
+    // <Outlet/> tag z tym że importowany w takiej formie by można go było użyć przy porównaniach logicznych
+    const outlet = useOutlet()
+
+    return(    
+        <>            
+            <Sheet {...Wrapper}>
+                <HeaderSection mainNavState={{ selectedMainNav, setSelectedMainNav }}/>
+
+                <Divider variant="soft" sx={{margin : 1}}>Welcome</Divider>
+
+                <Sheet variant="soft">
+                    <Stack {...Main} >
+                        {outlet || <Home/>}
+                    </Stack>
+                </Sheet>
+
+                <Divider variant="soft" sx={{margin : 1}}>Contact Little Lemon</Divider>
+
+                <FooterSection/>
+
+                { AdminSession && <>
+                    <Drawer open={adminDrawer} anchor="top" onClose={()=>setAdminDrawer(false)}>Admin</Drawer>                    
+                    <ThemeSwitch/>
+                    <Typography level="body-md">Width: { screenWidth }</Typography>
+                    <Button onClick={()=>setAdminDrawer(true)}>Admin Drawer</Button>
+                </>}
+            </Sheet>
         </>
     )
 }

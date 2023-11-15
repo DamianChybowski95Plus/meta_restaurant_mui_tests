@@ -1,7 +1,7 @@
-import { Typography } from "@mui/material";
+import AboutSection from "components/sections/AboutSection";
 
 export default function About(){
-    return ( 
-        <Typography level="body-md">About</Typography>
+    return(
+        <AboutSection/>
     )
 }

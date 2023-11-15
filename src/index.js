@@ -18,7 +18,6 @@ import {
 
 import { CssVarsProvider as JoyCssVarsProvider } from "@mui/joy";
 
-
 const router = createBrowserRouter([
   { 
     path : "/",
