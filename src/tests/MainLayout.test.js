@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
-
-import MainLayout from "../views/MainLayout"
+// import MainLayout from "../views/MainLayout"
 import { MemoryRouter } from 'react-router-dom';
 
 describe("MainLayout view tests", ()=>{
