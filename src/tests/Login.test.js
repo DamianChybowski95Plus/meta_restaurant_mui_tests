@@ -4,7 +4,7 @@ import Login from "views/MainLayout/Login"
 
 describe( "Login view tests", ()=>{
     <MemoryRouter>
-        render(<Login/>)
+        {/* render(<Login/>) */}
     </MemoryRouter>
     
     it("Displays login", ()=>{
