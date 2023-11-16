@@ -12,7 +12,7 @@ import { tableLayout } from "Data";
 import { importAll } from "components/macros/importAll";
 
 
-const tablesImages = importAll(require.context("../../assets/location", false))
+const tablesImages = importAll(require.context("../../assets/location", false ))
 
 const ReservationRow = {
     direction : "row",
